@@ -38,7 +38,7 @@ boolean FetchSignal ( int Receive_Pin ) {
   #ifdef ESP32
     const unsigned long LoopsPerMilli = 2700;
   #else
-    const unsigned long LoopsPerMilli = 800;
+    const unsigned long LoopsPerMilli = 2700;
   #endif
   // ************************************************************
   // ************************************************************
@@ -92,6 +92,7 @@ boolean FetchSignal ( int Receive_Pin ) {
     // Als de laag periode voldoende lang is, is het de startpuls
     // Berg dan ook de positieve en negatieve startpuls op
     // ************************************************************
+
     if ( PulseLength > 5000 ) {
 //Serial.println ( PulseLength ) ;
       RawSignal.Pulses [ RawCodeLength++ ] = LastPulse - FETCH_Pulse_Plus_1 ;
@@ -147,7 +148,6 @@ boolean FetchSignal ( int Receive_Pin ) {
   // stop als er een lange puls is gevonden of als het buffer vol is
   // ************************************************************
   } while ( ( RawCodeLength < RAW_BUFFER_SIZE ) && ( numloops < maxloops ) ) ;
-//Serial.println ( RawCodeLength ) ;
 
   // ************************************************************
   // We hebben nu het einde van een signaal bereikt
@@ -158,13 +158,11 @@ boolean FetchSignal ( int Receive_Pin ) {
   if ( ( RawCodeLength >= MIN_RAW_PULSES ) && 
        ( RawCodeLength <= MAX_RAW_PULSES ) &&
        ( RawSignal.Min > 150 ) &&
-       ( RawSignal.Max < 3000 ) ) {
+       ( RawSignal.Max < 4500 ) ) {
     RawSignal.Mean = RawSignal.Mean / ( RawCodeLength - 3 ) ;
     RawSignal.Number   = RawCodeLength-1 ;            // Number of received pulse times (pulsen *2)
     RawSignal.Pulses [ RawSignal.Number + 1 ] = 0 ;   // Last element contains the timeout. 
     RawSignal.Time = millis() ;                       // Time the RF packet was received (to keep track of retransmits
-//Serial.print ( "D" ) ;
-//Serial.print ( RawCodeLength ) ;
     return true ;
   } 
 
