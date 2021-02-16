@@ -2,6 +2,7 @@
 #ifndef RFL_Protocol_Base_h
 #define RFL_Protocol_Base_h
 
+#include "bitbuffer.h"
 
 char      _RFLink_pbuffer  [ 60 ] ;           // Buffer for printing data
 char      _RFLink_pbuffer2 [ 30 ] ;

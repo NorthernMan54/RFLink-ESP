@@ -1,10 +1,10 @@
 {
   "RS232 Baudrate": 115200,
   "Sample Period[ms]": 10000,
-  "Signal LED": -1,
+  "Signal LED": 2,
   "Sensor_Wifi": true,
-  "Wifi-Netwerk": "<HomeNetwork SSID>",
-  "$Wifi-Password": "<Wifi Password>",
+  "Wifi-Netwerk": "67 Bonacres",
+  "$Wifi-Password": "brownieg",
   "Receiver_Telnet": true,
   "Receiver_SPIFFS": true,
   "SPIFFS Filename": "/Data.csv",
@@ -21,10 +21,10 @@
   "Receiver_OTA": true,
   "Watchdog GPIO": 23,
   "MQTT Topic": "hb/from_HA/RFLink_ESP",
-  "MQTT Broker-IP": "192.168.0.123",
+  "MQTT Broker-IP": "mqtt.local",
   "OTA Hostname": "RFLink_ESP",
   "$OTA Password": "RFLink_ESP",
   "Sensor_RFLink": true,
-  "RFLink Receive  GPIO": 12,
+  "RFLink Receive  GPIO": D1,
   "RFLink Transmit GPIO": 14
 }

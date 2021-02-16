@@ -24,7 +24,7 @@ _RFLink_File  RFLink_File ; // ( "/RFLink.txt" ) ;
 
 byte          PKSequenceNumber = 0 ;  // 1 byte packet counter
 String        Unknown_Device_ID   = ""    ;
-int           Learning_Mode       = 0  ;  // always start in production mode
+int           Learning_Mode       = 4  ;  // always start in production mode
 char          PreFix [20]              ;
 
 //#define Home_Automation  "MQTT"
@@ -107,7 +107,8 @@ class _Sensor_RFLink : public _Sensor_BaseClass {
       // *********   PROTOCOL CLASSES, available and in this order   ************
       RFL_Protocols.Add ( new _RFL_Protocol_KAKU             ( this->_Receive_Pin, this->_Transmit_Pin ) ) ;  
       RFL_Protocols.Add ( new _RFL_Protocol_EV1527           ( this->_Receive_Pin, this->_Transmit_Pin ) ) ;  
-      RFL_Protocols.Add ( new _RFL_Protocol_Paget_Door_Chime ( this->_Receive_Pin, this->_Transmit_Pin ) ) ;  
+      RFL_Protocols.Add ( new _RFL_Protocol_Paget_Door_Chime ( this->_Receive_Pin, this->_Transmit_Pin ) ) ;
+      RFL_Protocols.Add ( new _RFL_Protocol_Prologue_Sensor  ( this->_Receive_Pin, this->_Transmit_Pin ) ) ; 
       RFL_Protocols.setup () ;
       // ************************************************************************
       //Serial.printf ( "20;%02X;Nodo RadioFrequencyLink - MiRa V%s\r\n", 

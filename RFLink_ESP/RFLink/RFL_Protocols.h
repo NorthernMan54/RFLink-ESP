@@ -50,6 +50,7 @@ unsigned long HexString_2_Long ( String HexString ) {
 #include "RFL_Protocol_EV1527.h"
 #include "RFL_Protocol_KAKU.h"
 #include "RFL_Protocol_Paget_Door_Chime.h"
+#include "RFL_Protocol_Prologue_Sensor.h"
 
 
 // *************************************************************************
@@ -172,6 +173,7 @@ class _RFL_Protocols {
       // *****************************************************************
       if ( Learning_Mode == 0 ) {
         for ( auto RFL_Protocol:_RFL_Protocol_List ){
+          Serial.println ( RFL_Protocol->Name ) ;
           if ( RFL_Protocol->RF_Decode () ) {
             // ****************************************************
             // do some housekeeping
@@ -180,6 +182,7 @@ class _RFL_Protocols {
             Last_Detection_Time = millis () ;
             return true ;
           }
+          yield();
         }  
         return false ;
       } 
@@ -187,7 +190,7 @@ class _RFL_Protocols {
       // *****************************************************************
       else if ( Learning_Mode == 1 ) {
         for ( auto RFL_Protocol:_RFL_Protocol_List ){
-//Serial.println ( RFL_Protocol->Name ) ;
+          Serial.println ( RFL_Protocol->Name ) ;
           if ( RFL_Protocol->RF_Decode () ) {
             // ****************************************************
             // do some housekeeping
